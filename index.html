@@ -1,16 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElectriCalc Pro</title>
-    <!-- CSS -->
-     <link rel="stylesheet" href="style.css">
+    <title>ElectriCalc Pro - Professional Electrical Calculator</title>
+    <meta name="description"
+        content="Professional electrical calculator for AC to DC conversion, power calculations, and electrical engineering computations">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
-    
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo-container">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h1 class="brand-title">ElectriCalc Pro</h1>
+                    <p class="brand-subtitle">Professional Electrical Calculator</p>
+                </div>
+            </div>
+
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <svg id="sun-icon" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moon-icon" class="theme-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <svg class="hero-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                </div>
+
+                <h1 class="hero-title">
+                    Professional Electrical
+                    <span class="hero-title-accent">Calculator Suite</span>
+                </h1>
+
+                <p class="hero-description">
+                    Comprehensive electrical calculations for professionals and students.
+                    Convert between AC/DC, calculate power relationships, and maintain your calculation history.
+                </p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                            <line x1="8" y1="6" x2="16" y2="6"></line>
+                            <line x1="8" y1="10" x2="16" y2="10"></line>
+                            <line x1="8" y1="14" x2="16" y2="14"></line>
+                            <line x1="8" y1="18" x2="12" y2="18"></line>
+                        </svg>
+                        <span class="feature-text">AC/DC</span>
+                    </div>
+                    <div class="feature-card">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                        <span class="feature-text">Watt/Volt</span>
+                    </div>
+                    <div class="feature-card">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                        <span class="feature-text">Watt/Amp</span>
+                    </div>
+                    <div class="feature-card">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z">
+                            </path>
+                        </svg>
+                        <span class="feature-text">Volt/Amp</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="calculators-grid">
+            <!-- AC to DC Converter -->
+            <div class="calculator-card">
+                <div class="calculator-header">
+                    <div class="calculator-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                            <line x1="8" y1="6" x2="16" y2="6"></line>
+                            <line x1="8" y1="10" x2="16" y2="10"></line>
+                            <line x1="8" y1="14" x2="16" y2="14"></line>
+                            <line x1="8" y1="18" x2="12" y2="18"></line>
+                        </svg>
+                    </div>
+                    <h3 class="calculator-title">AC to DC Converter</h3>
+                </div>
+
+                <div class="calculator-form">
+                    <div class="input-group">
+                        <label class="input-label">AC Voltage (V)</label>
+                        <input type="number" id="ac-voltage" class="input-field" placeholder="Enter AC voltage">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Efficiency (%)</label>
+                        <input type="number" id="ac-efficiency" class="input-field" placeholder="Enter efficiency %"
+                            value="85" min="1" max="100">
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="calculateACToDC()">Calculate</button>
+                        <button class="btn-secondary" onclick="resetACToDC()">Reset</button>
+                    </div>
+
+                    <div id="ac-result" class="result-container hidden">
+                        <h4 class="result-title">Result</h4>
+                        <p class="result-value" id="ac-result-value"></p>
+                        <p class="result-description" id="ac-result-description"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Watt to Volt Converter -->
+            <div class="calculator-card">
+                <div class="calculator-header">
+                    <div class="calculator-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="calculator-title">Watt to Volt Converter</h3>
+                </div>
+
+                <div class="calculator-form">
+                    <div class="input-group">
+                        <label class="input-label">Power (Watts)</label>
+                        <input type="number" id="wv-watts" class="input-field" placeholder="Enter power in watts">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Current (Amperes)</label>
+                        <input type="number" id="wv-amperes" class="input-field" placeholder="Enter current in amperes">
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="calculateWattToVolt()">Calculate</button>
+                        <button class="btn-secondary" onclick="resetWattToVolt()">Reset</button>
+                    </div>
+
+                    <div id="wv-result" class="result-container hidden">
+                        <h4 class="result-title">Result</h4>
+                        <p class="result-value" id="wv-result-value"></p>
+                        <p class="result-description" id="wv-result-description"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Watt to Ampere Converter -->
+            <div class="calculator-card">
+                <div class="calculator-header">
+                    <div class="calculator-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="calculator-title">Watt to Ampere Converter</h3>
+                </div>
+
+                <div class="calculator-form">
+                    <div class="input-group">
+                        <label class="input-label">Power (Watts)</label>
+                        <input type="number" id="wa-watts" class="input-field" placeholder="Enter power in watts">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Voltage (Volts)</label>
+                        <input type="number" id="wa-volts" class="input-field" placeholder="Enter voltage in volts">
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="calculateWattToAmpere()">Calculate</button>
+                        <button class="btn-secondary" onclick="resetWattToAmpere()">Reset</button>
+                    </div>
+
+                    <div id="wa-result" class="result-container hidden">
+                        <h4 class="result-title">Result</h4>
+                        <p class="result-value" id="wa-result-value"></p>
+                        <p class="result-description" id="wa-result-description"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Volt to Ampere Converter -->
+            <div class="calculator-card">
+                <div class="calculator-header">
+                    <div class="calculator-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="calculator-title">Volt to Ampere Converter</h3>
+                </div>
+
+                <div class="calculator-form">
+                    <div class="input-group">
+                        <label class="input-label">Voltage (Volts)</label>
+                        <input type="number" id="va-volts" class="input-field" placeholder="Enter voltage in volts">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Resistance (Ohms)</label>
+                        <input type="number" id="va-resistance" class="input-field"
+                            placeholder="Enter resistance in ohms">
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="calculateVoltToAmpere()">Calculate</button>
+                        <button class="btn-secondary" onclick="resetVoltToAmpere()">Reset</button>
+                    </div>
+
+                    <div id="va-result" class="result-container hidden">
+                        <h4 class="result-title">Result</h4>
+                        <p class="result-value" id="va-result-value"></p>
+                        <p class="result-description" id="va-result-description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculation History -->
+        <div class="history-section">
+            <div class="history-card">
+                <div class="history-header">
+                    <div class="history-title-container">
+                        <div class="calculator-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12,6 12,12 16,14"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="calculator-title">Calculation History</h3>
+                    </div>
+                    <button id="clear-history" class="clear-btn" onclick="clearHistory()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3,6 5,6 21,6"></polyline>
+                            <path
+                                d="m19,6v14a2,2 0 0,1 -2,2H7a2,2 0 0,1 -2,-2V6m3,0V4a2,2 0 0,1 2,-2h4a2,2 0 0,1 2,2v2">
+                            </path>
+                        </svg>
+                        <span>Clear</span>
+                    </button>
+                </div>
+
+                <div id="history-content" class="history-content">
+                    <div class="empty-history">
+                        <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12,6 12,12 16,14"></polyline>
+                        </svg>
+                        <p class="empty-text">No calculations yet. Start calculating to see your history here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p class="footer-text">
+                © 2025 ElectriCalc Pro. Professional electrical calculations made simple.
+            </p>
+        </div>
+    </footer>
+
 
     <!-- JavaScript -->
-     <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
